@@ -8,7 +8,7 @@
     @for (item of films; track $index) {
         <div class="content-item">
             <div class="content-image">
-                <img [src]="'https://image.tmdb.org/t/p/w200'+films[$index].backdrop_path" alt="" >
+                <img [src]="'https://image.tmdb.org/t/p/w200'+films[$index].poster_path" alt="" >
             </div>
             <span>{{films[$index].title}}</span>
         </div>
