@@ -6,12 +6,21 @@
     </div>
     <div class="content-wrap">
     @for (item of films; track $index) {
-        <div class="content-item">
+        <div class="content-item" (click)="showDetailsFilm(item)">
             <div class="content-image">
-                <img [src]="'https://image.tmdb.org/t/p/w200'+films[$index].poster_path" alt="" >
+                <img [src]="'https://image.tmdb.org/t/p/w400'+item.poster_path" alt="" >
             </div>
-            <span>{{films[$index].title}}</span>
+            <span>{{item.title}}</span>
         </div>
     }
+    </div>
+</div>
+
+<div [ngClass]="{'show-details': showDetails, 'hide-details': !showDetails }" >
+    <div style="position: relative;margin: auto; display: flex; flex-direction: column; width: 50vw; background-color: black;">
+        <img [src]="filmShow" alt="" style="width: 100%; height: auto;">
+        <span style="padding: 1rem;">{{titleShow}}</span>
+        <p style="padding: 0 1rem 1rem 1rem;">{{overviewShow}}</p>
+        <span (click)="showDetails = false" style="color: greenyellow; cursor: pointer;position:absolute; top:0; right: 1rem; font-size: 2rem;">x</span>
     </div>
 </div>

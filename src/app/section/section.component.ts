@@ -20,6 +20,11 @@ export class SectionComponent {
   });
 
 
+  //contenido en el div detalle de la pelicula
+  showDetails: boolean = false;
+  filmShow: any;
+  titleShow: any;
+  overviewShow: any;
 
 
 
@@ -92,6 +97,15 @@ export class SectionComponent {
       this.films = film.results;
       console.log(this.films);
     });
+  }
+
+  showDetailsFilm(item: any){
+    this.showDetails = true;
+    console.log(this.showDetails);
+    console.log(item);
+    this.filmShow = `https://image.tmdb.org/t/p/w400${item.poster_path}`;
+    this.titleShow = item.original_title;
+    this.overviewShow = item.overview;
   }
 
 }

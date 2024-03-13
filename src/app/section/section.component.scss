@@ -17,17 +17,26 @@
             background-color: rgb(14, 14, 14); 
             width: 260px; 
             margin-top: 1rem;
+            //nuevo para animacion
+            view-timeline-name: --image;
+            view-timeline-axis: block;
+            animation-timeline: --image;
+            animation-name: show;
+            animation-range: entry 25% cover 50%;
+            animation-fill-mode: both;
             .content-image{
                 max-width: 260px; 
                 overflow-y: hidden; 
                 display: flex; 
                 flex-direction: column;
+                
                 img{
                     height: 100%;
                 }
             }
             span{
                 padding: 1rem;
+                font-size: 1.4rem;
             }
         }
     }
@@ -44,6 +53,32 @@
     color: black;
     font-weight: 600;
     padding: 4px 1rem;
+}
+
+// animacion scroll
+@keyframes show {
+    from {
+        opacity: 0;
+        scale: 25%;
+    }
+    to{
+        opacity: 1;
+        scale: 100%;
+    }
+}
+
+.show-details{
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgb(33, 33, 33, 0.6); 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    display: flex;
+}
+.hide-details{
+    display: none;
 }
 
 @media (max-width: 668px){
