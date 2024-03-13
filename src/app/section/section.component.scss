@@ -33,6 +33,19 @@
     }
 }
 
+.button-filter{
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    padding: 4px 1rem;
+}
+.button-filter-active{
+    background-color: greenyellow;
+    color: black;
+    font-weight: 600;
+    padding: 4px 1rem;
+}
+
 @media (max-width: 668px){
     .content-item{
         display: flex; 
