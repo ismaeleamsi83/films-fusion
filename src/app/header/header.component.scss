@@ -3,10 +3,14 @@
     width: 100%; 
     height: 600px; 
     overflow: hidden; 
-    background-image: url('../../assets/images/encabezado.png'); 
+    background-image: url('../../assets/images/encabezado4.jpeg'); 
     background-size:cover;
     .container-nav{
-        width: 100%; background-color:rgba(0, 0, 0, 0.336); position: fixed; top: 0; left: 0;
+        width: 100%; 
+        background-color:rgba(0, 0, 0, 0.5); 
+        position: fixed; 
+        top: 0; left: 0;
+        z-index: 2;
         nav{
             max-width: 1024px; 
             margin: auto;

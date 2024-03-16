@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-section',
@@ -11,6 +12,8 @@ import { CommonModule } from '@angular/common';
 })
 export class SectionComponent {
 
+  @ViewChild('focusFilms') focusFilms!: ElementRef;
+
 
   films: any;
   token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOTU2N2I3YjE4NDk0MzYzYTdhMjMwZGE4N2MzMjcxYSIsInN1YiI6IjY1ZjA3MThlMTdiNWVmMDE4NWI4Y2MzNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6evinFLVwzkbSrxslCziL5_G-wL4F-rzwBCXWxhOADM";
@@ -18,7 +21,7 @@ export class SectionComponent {
       'Authorization': `Bearer ${this.token}`,
       'Accept': 'application/json' // Este sería el tipo de dato que aceptas, puede ser application/json u otro según lo que necesites
   });
-
+  pageActual: number = 1;
 
   //contenido en el div detalle de la pelicula
   showDetails: boolean = false;
@@ -40,7 +43,8 @@ export class SectionComponent {
   ApiVideo: string = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
   
   ApiAllFilter: string = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient
+    , private router: Router) {}
 
   ngOnInit(): void {
 
@@ -104,8 +108,43 @@ export class SectionComponent {
     console.log(this.showDetails);
     console.log(item);
     this.filmShow = `https://image.tmdb.org/t/p/w400${item.poster_path}`;
-    this.titleShow = item.original_title;
+    this.titleShow = item.title;
     this.overviewShow = item.overview;
   }
+
+
+  nextPage(){
+    
+    this.pageActual++;
+    const headers = this.headers;
+    this.ApiAllFilter = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=${this.pageActual}&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
+
+    this.httpClient.get(this.ApiAllFilter, {headers})
+    .subscribe((film:any)=> {
+      console.log(film);
+      this.films = film.results;
+      console.log(this.films);
+      this.router.navigateByUrl('focusFilm');
+    });
+
+    
+  }
+
+  backPage(){
+    if(this.pageActual > 1){ 
+      this.pageActual--;
+      const headers = this.headers;
+      this.ApiAllFilter = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=${this.pageActual}&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
+  
+      this.httpClient.get(this.ApiAllFilter, {headers})
+      .subscribe((film:any)=> {
+        console.log(film);
+        this.films = film.results;
+        console.log(this.films);
+        this.router.navigateByUrl('focusFilm');
+      });
+    }
+  }
+
 
 }

@@ -1,4 +1,4 @@
-<div class="container-items">
+<div class="container-items" id="focusFilm">
     <h2>NOW PLAYING</h2>
     <div style="margin-top: 1rem;">
         <button [ngClass]="{'button-filter-active': include_adult, 'button-filter': !include_adult}" (click)="filterAdult()">Filter Include Adult</button>
@@ -10,17 +10,22 @@
             <div class="content-image">
                 <img [src]="'https://image.tmdb.org/t/p/w400'+item.poster_path" alt="" >
             </div>
-            <span>{{item.title}}</span>
+            <span>{{item.title | uppercase}}</span>
         </div>
     }
     </div>
 </div>
 
+<div class="content-buttons-pages">
+    <a href="#focusFilm"><button (click)="backPage()">BACK FILM</button></a>
+    <a href="#focusFilm"><button (click)="nextPage()">NEXT FILM</button></a>
+</div>
+
 <div [ngClass]="{'show-details': showDetails, 'hide-details': !showDetails }" >
-    <div style="position: relative;margin: auto; display: flex; flex-direction: column; width: 50vw; background-color: black;">
-        <img [src]="filmShow" alt="" style="width: 100%; height: auto;">
-        <span style="padding: 1rem;">{{titleShow}}</span>
-        <p style="padding: 0 1rem 1rem 1rem;">{{overviewShow}}</p>
-        <span (click)="showDetails = false" style="color: greenyellow; cursor: pointer;position:absolute; top:0; right: 1rem; font-size: 2rem;">x</span>
+    <div class="content-details" >
+        <img [src]="filmShow" alt="" >
+        <span class="title-details">{{titleShow | uppercase}}</span>
+        <p class="overview-details" maxlength="20">{{overviewShow}}</p>
+        <span class="close-details" (click)="showDetails = false">x</span>
     </div>
 </div>

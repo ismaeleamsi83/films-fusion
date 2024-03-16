@@ -7,7 +7,11 @@
 }
 
 body{
-    background-color: rgb(24, 24, 24);
+    //background: url("./assets/images/fondoprueba.jpg"), rgb(24, 24, 24) ;
+    //noise("./assets/images/encabezado.png")
+    // background: radial-gradient(#000 100%,#0000 0);
+    //background-image: url("./assets/images/fondoprueba.jpg");
+    background:linear-gradient( rgba(0, 0, 0, 0.9) 100%, rgba(0, 0, 0, 0.9)100%),url("./assets/images/fondo2.avif");
 }
 
 a{
