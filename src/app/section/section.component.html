@@ -3,6 +3,7 @@
     <div style="margin-top: 1rem;">
         <button [ngClass]="{'button-filter-active': include_adult, 'button-filter': !include_adult}" (click)="filterAdult()">Filter Include Adult</button>
         <button [ngClass]="{'button-filter-active': include_video, 'button-filter': !include_video}" (click)="filterVideo()">Filter Include Video</button>
+        <button (click)="showTopRated()" style="color: black; padding: 4px 16px; font-weight: 600;">Top Rated</button>
     </div>
     <div class="content-wrap">
     @for (item of films; track $index) {
@@ -17,15 +18,15 @@
 </div>
 
 <div class="content-buttons-pages">
-    <a href="#focusFilm"><button (click)="backPage()">BACK FILM</button></a>
-    <a href="#focusFilm"><button (click)="nextPage()">NEXT FILM</button></a>
+    <a href="#focusFilm"><button (click)="getHomeFilms('back')">BACK FILM</button></a>
+    <a href="#focusFilm"><button (click)="getHomeFilms('next')">NEXT FILM</button></a>
 </div>
 
 <div [ngClass]="{'show-details': showDetails, 'hide-details': !showDetails }" >
     <div class="content-details" >
         <img [src]="filmShow" alt="" >
         <span class="title-details">{{titleShow | uppercase}}</span>
-        <p class="overview-details" maxlength="20">{{overviewShow}}</p>
+        <p class="overview-details" maxlength="20">{{overviewShow}} {{releaseDateShow}}</p>
         <span class="close-details" (click)="showDetails = false">x</span>
     </div>
 </div>
