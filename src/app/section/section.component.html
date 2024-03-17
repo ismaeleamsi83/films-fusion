@@ -1,9 +1,9 @@
 <div class="container-items" id="focusFilm">
     <h2>NOW PLAYING</h2>
     <div style="margin-top: 1rem;">
-        <button [ngClass]="{'button-filter-active': include_adult, 'button-filter': !include_adult}" (click)="filterAdult()">Filter Include Adult</button>
+        <!-- <button [ngClass]="{'button-filter-active': include_adult, 'button-filter': !include_adult}" (click)="filterAdult()">Filter Include Adult</button>
         <button [ngClass]="{'button-filter-active': include_video, 'button-filter': !include_video}" (click)="filterVideo()">Filter Include Video</button>
-        <button (click)="showTopRated()" style="color: black; padding: 4px 16px; font-weight: 600;">Top Rated</button>
+        <button (click)="showTopRated()" style="color: black; padding: 4px 16px; font-weight: 600;">Top Rated</button> -->
     </div>
     <div class="content-wrap">
     @for (item of films; track $index) {

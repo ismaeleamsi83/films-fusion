@@ -13,7 +13,7 @@ export class FilmsService {
 
   constructor(
     private http: HttpClient,
-    //private headers: HttpHeaders
+    
   ) { }
 
   token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOTU2N2I3YjE4NDk0MzYzYTdhMjMwZGE4N2MzMjcxYSIsInN1YiI6IjY1ZjA3MThlMTdiNWVmMDE4NWI4Y2MzNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6evinFLVwzkbSrxslCziL5_G-wL4F-rzwBCXWxhOADM";
@@ -26,12 +26,7 @@ export class FilmsService {
   private apiURL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}';
 
   /** GET films from the server */
-  getNowPlayingFilms(): Observable<any> {
-    const header = this.headers;
-    return this.http.get<any>(this.apiURL, {headers: header});
-  }
-
-  getNowPlayingFilms2(page: any): Observable<any> {
+  getNowPlayingFilms(page: any): Observable<any> {
     this.apiURL = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
     const header = this.headers;
     return this.http.get<any>(this.apiURL, {headers: header});

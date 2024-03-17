@@ -62,9 +62,7 @@ export class SectionComponent {
 
       this.top_rated = false;
       const headers = this.headers;
-    
       this.getHomeFilms("next");
-    
   }
 
   getHomeFilms(simbPage: any){
@@ -75,7 +73,7 @@ export class SectionComponent {
         this.pageActual--;
       }
     }  
-    this.serviceFilms.getNowPlayingFilms2(this.pageActual)
+    this.serviceFilms.getNowPlayingFilms(this.pageActual)
       .subscribe({
         next: data => this.films=data.results,
         error: err => console.error('Observable emitted an error: ' + err),
@@ -83,35 +81,6 @@ export class SectionComponent {
       });
   }
 
-  filterAdult(){
-
-    this.include_adult = !this.include_adult;
-    console.log("filtro adulto:"+this.include_adult);
-    console.log("filtro video:"+this.include_video);
-    this.ApiAllFilter = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
-    const headers = this.headers;
-    this.httpClient.get(this.ApiAllFilter, {headers})
-    .subscribe((film:any)=> {
-      console.log(film);
-      this.films = film.results;
-      console.log(this.films);
-    });
-  }
-
-  filterVideo(){
-    this.include_video = !this.include_video;
-    console.log("filtro adulto:"+this.include_adult);
-    console.log("filtro video:"+this.include_video);
-    this.ApiAllFilter = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
-    const headers = this.headers;
-
-    this.httpClient.get(this.ApiAllFilter, {headers})
-    .subscribe((film:any)=> {
-      console.log(film);
-      this.films = film.results;
-      console.log(this.films);
-    });
-  }
 
   showDetailsFilm(item: any){
     this.showDetails = true;
@@ -122,57 +91,5 @@ export class SectionComponent {
     this.overviewShow = item.overview;
     this.releaseDateShow= item.release_date;
   }
-
-
-  showTopRated(){
-    this.top_rated = !this.top_rated;
-    const headers = this.headers;
-    this.httpClient.get(this.ApiTopRated, {headers})
-    .subscribe((film:any)=> {
-      console.log(film);
-      this.films = film.results;
-      console.log(this.films);
-    });
-  }
-
-
-  nextPage(){
-
-  
-    
-      this.pageActual++;
-      const headers = this.headers;
-      this.ApiAllFilter = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=${this.pageActual}&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
-  
-      this.httpClient.get(this.ApiAllFilter, {headers})
-      .subscribe((film:any)=> {
-        console.log(film);
-        this.films = film.results;
-        console.log(this.films);
-        //this.router.navigateByUrl('focusFilm');
-      });
-
-    
-    
-    
-    
-  }
-
-  backPage(){
-    if(this.pageActual > 1){ 
-      this.pageActual--;
-      const headers = this.headers;
-      this.ApiAllFilter = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=${this.pageActual}&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
-  
-      this.httpClient.get(this.ApiAllFilter, {headers})
-      .subscribe((film:any)=> {
-        console.log(film);
-        this.films = film.results;
-        console.log(this.films);
-        //this.router.navigateByUrl('focusFilm');
-      });
-    }
-  }
-
 
 }
