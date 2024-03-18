@@ -79,6 +79,9 @@ export class SectionComponent {
         error: err => console.error('Observable emitted an error: ' + err),
         complete: () => console.log('Observable emitted the complete notification')
       });
+    
+    //mover al principio  de la pagina
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 
