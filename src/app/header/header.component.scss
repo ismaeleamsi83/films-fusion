@@ -3,8 +3,11 @@
     width: 100%; 
     height: 600px; 
     overflow: hidden; 
-    background-image: url('../../assets/images/encabezado4.jpeg'); 
+    background-image: url('../../assets/images/encabezado.webp'); 
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(48, 48, 48, 0.5)), url('../../assets/images/encabezado.webp');
+    background-position: top;
     background-size:cover;
+    background-repeat: no-repeat;
     .container-nav{
         width: 100%; 
         background-color:rgba(0, 0, 0, 0.8); 
@@ -35,6 +38,10 @@
                         text-shadow: 3px 3px 3px black;  
                         
                     }
+                    
+                }
+                span:hover{
+                    transform: scale(1.025);
                 }
             }
         }

@@ -3,6 +3,7 @@ import { Component, ElementRef, ViewChild  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FilmsService } from '../services/films.service';
+import { defer } from 'rxjs';
 //import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -33,36 +34,19 @@ export class SectionComponent {
   releaseDateShow: any;
 
 
-
-  Api: string = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
-
-  ApiNowPlaying: string = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}";
-
-  
-  include_adult: boolean = false;
-  ApiAdult: string = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
-
-  include_video: boolean = false;
-  ApiVideo: string = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
-  
-  ApiAllFilter: string = `https://api.themoviedb.org/3/discover/movie?include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`;
-  
-  
-  top_rated: boolean = false;
-  ApiTopRated: string = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200`;
   
   constructor(
     private httpClient: HttpClient, 
     private router: Router,
     private serviceFilms: FilmsService
-    // private rutaActiva: ActivatedRoute
     ) {}
 
   ngOnInit(): void {
 
-      this.top_rated = false;
       const headers = this.headers;
+      
       this.getHomeFilms("next");
+      
   }
 
   getHomeFilms(simbPage: any){
@@ -81,7 +65,7 @@ export class SectionComponent {
       });
     
     //mover al principio  de la pagina
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 200, behavior: 'smooth' });
   }
 
 

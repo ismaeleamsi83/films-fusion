@@ -81,7 +81,7 @@ export class TopratedComponent implements OnInit {
       });
 
     //mover al principio  de la pagina
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 200, behavior: 'smooth' });
   }
 
 
