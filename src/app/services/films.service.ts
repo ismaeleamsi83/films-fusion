@@ -40,4 +40,11 @@ export class FilmsService {
     return this.http.get<any>(this.apiURLTop, {headers: header});
   }
 
+  /** GET films from the server */
+  getPopularFilms(page: any): Observable<any> {
+    this.apiURLTop = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
+    const header = this.headers;
+    return this.http.get<any>(this.apiURLTop, {headers: header});
+  }
+
 }
