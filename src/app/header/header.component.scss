@@ -68,7 +68,10 @@
                 align-items: start;
                 box-sizing: border-box;
                 justify-content: space-between; 
-                padding: 0 2rem;
+                padding: 4px 2rem 8px 2rem;
+                .title-nav{
+                    margin-top: 4px;
+                }
                 .content-links{
                     display: flex;
                     flex-direction: column; 
@@ -92,7 +95,7 @@
                     }
                 }
                 .content-links.actived{
-                    height: 100vh;
+                    padding-bottom: 1rem;
                     span:nth-child(2){
                         margin-top: 1rem;
                     }
@@ -147,8 +150,9 @@
                     display: flex; 
                     gap: 1rem;
                     span{
-                        font-size: 1.2rem; 
+                        font-size: 1.4rem; 
                         font-weight: 900;
+                        letter-spacing: 1px;
                         a{
                             text-shadow: 3px 3px 3px black;  
                             

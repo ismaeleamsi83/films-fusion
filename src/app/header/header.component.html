@@ -9,13 +9,13 @@
                     <img src="../../assets/images/menu.png" alt="icono menu" (click)="menuActive = !menuActive">
                 </span>
                 <span>
-                    <a [routerLink]="['/']">Now Playing</a>
+                    <a [routerLink]="['/']" (click)="menuActive = false">Now Playing</a>
                 </span>
                 <span>
-                    <a [routerLink]="['/toprated']" >Top Rated</a>
+                    <a [routerLink]="['/toprated']" (click)="menuActive = false">Top Rated</a>
                 </span>
                 <span>
-                    <a [routerLink]="['/popular']">Popular</a>
+                    <a [routerLink]="['/popular']" (click)="menuActive = false">Popular</a>
                 </span>
             </div>
         </nav>
