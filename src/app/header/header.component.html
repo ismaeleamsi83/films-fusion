@@ -4,7 +4,10 @@
             <span class="title-nav">
                 <a href="">FilmFusion</a>
             </span>
-            <div class="content-links">
+            <div class="content-links" [ngClass]="{'actived': menuActive}">
+                <span>
+                    <img src="../../assets/images/menu.png" alt="icono menu" (click)="menuActive = !menuActive">
+                </span>
                 <span>
                     <a [routerLink]="['/']">Now Playing</a>
                 </span>
